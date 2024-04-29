@@ -4,39 +4,43 @@
         <div style="text-align: center;">
             <h1>profiles</h1>
             <select name="profiles"> 
-                <option value="rigatoni">Rigatoni</option> 
-                <option value="dave">Dave</option> 
-                <option value="pumpernickel">Pumpernickel</option> 
-                <option value="reeses">Reeses</option> 
+                <option selected disabled>Profiles</option> 
+                {% for result in owner %}
+                    {% for d in dog %}
+                        {% if result.owner_number == d.owner_number %}
+                        {% if result.owner_name != "" %}
+                        <option> {{result.owner_name}} - {{d.dog_name}} - {{result.owner_number}}</option>
+                        {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
             </select>
             <h1>Registeration</h1>
-            <form>
+            <form action="" method ="POST">{% csrf_token %}
                 <h2>Owner Information</h2>
                     <label>Name:</label><br>
-                    <input type="text"><br>
+                    <input type="text" name="owner_name"><br>
                     <label>Email:</label><br>
-                    <input type="text"><br>
+                    <input type="text" name="owner_email"><br>
                     <label>Number:</label><br>
-                    <input type="text"><br>
+                    <input type="text" name="owner_number"><br>
                     <label>Address:</label><br>
-                    <input type="text"><br>
+                    <input type="text" name="owner_address"><br>
                     <label>Emergency Name:</label><br>
-                    <input type="text"><br>
+                    <input type="text" name="owner_emergency_name"><br>
                     <label>Emergency Relationship:</label><br>
-                    <input type="text"><br>
+                    <input type="text" name="owner_emergency_relationship"><br>
                     <label>Emergency Number:</label><br>
-                    <input type="text"><br>  
+                    <input type="text" name="owner_emergency_number"><br>  
                 <h2>Dog Information</h2>
                     <label>Name:</label><br>
-                    <input type="text"><br>
+                    <input type="text" name="dog_name"><br>
                     <label>Age:</label><br>
-                    <input type="text"><br>
+                    <input type="text" name="dog_age"><br>
                     <label>Breed:</label><br>
-                    <input type="text"><br>
+                    <input type="text" name="dog_breed"><br>
                     <label>Medical notes:</label><br>
-                    <input type="text"><br>
-                    <label>Behavioral notes:</label><br>
-                    <input type="text"><br><br>
+                    <input type="text" name="dog_medical_notes"><br>
                 <input type="submit" value="Submit">
             </form>
         </div> 
